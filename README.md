@@ -5,7 +5,7 @@
 ```sh
 clear ; docker build . \
     -f ./Dockerfile \
-    -t 'stradiavanti/init-vault:0.0.1' \
+    -t 'stradiavanti/init-vault:0.1' \
     --push
 ```
 
@@ -19,7 +19,7 @@ clear ; docker run -d --name $CONTAINER_NAME \
     -v "$SCRIPT_DIR:/docker-entrypoint-initdb.d" \
     -v "$SECRET_DIR:/usr/local/share/vault/secrets" \
     --network "$VAULT_NETWORK" \
-    'stradiavanti/init-vault:0.0.1'
+    'stradiavanti/init-vault:0.1'
 ```
 
 
@@ -66,7 +66,7 @@ services:
 
 
   init-vault:
-    image: 'stradiavanti/init-vault:0.0.1'
+    image: 'stradiavanti/init-vault:0.1'
     container_name: 'my-vault-init-vault'
 
     # сервис "распечатывает" vault, а healthcheck возвращает true только в том случае, если vault распечатан

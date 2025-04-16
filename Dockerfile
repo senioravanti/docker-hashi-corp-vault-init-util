@@ -1,5 +1,7 @@
 FROM alpine:3.21
 
+RUN mkdir /docker-entrypoint-init.d \
+    && mkdir -p /usr/local/share/vault/secrets
 VOLUME [ "/docker-entrypoint-init.d", "/usr/local/share/vault/secrets" ]
 
 RUN apk add --no-cache --update \
@@ -8,8 +10,6 @@ RUN apk add --no-cache --update \
     curl \
     jq \
     pwgen
-
-RUN mkdir /docker-entrypoint-init.d
 
 COPY ./scripts/* /usr/local/bin/init-vault/
 RUN chmod +x /usr/local/bin/init-vault/*.sh
